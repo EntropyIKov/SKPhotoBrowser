@@ -17,11 +17,14 @@ import UIKit
     func checkCache()
 }
 
+public typealias SKPhotoHeaders = [String: String]
+
 // MARK: - SKPhoto
 open class SKPhoto: NSObject, SKPhotoProtocol {
     
     open var underlyingImage: UIImage!
     open var photoURL: String!
+    open var headers: SKPhotoHeaders?
     open var contentMode: UIViewContentMode = .scaleAspectFill
     open var shouldCachePhotoURLImage: Bool = false
     open var caption: String!
@@ -36,15 +39,17 @@ open class SKPhoto: NSObject, SKPhotoProtocol {
         underlyingImage = image
     }
     
-    convenience init(url: String) {
+    convenience init(url: String, headers: SKPhotoHeaders? = nil) {
         self.init()
         photoURL = url
+        self.headers = headers
     }
     
-    convenience init(url: String, holder: UIImage?) {
+    convenience init(url: String, headers: SKPhotoHeaders? = nil, holder: UIImage?) {
         self.init()
         photoURL = url
         underlyingImage = holder
+        self.headers = headers
     }
     
     open func checkCache() {
@@ -71,7 +76,9 @@ open class SKPhoto: NSObject, SKPhotoProtocol {
         guard photoURL != nil, let URL = URL(string: photoURL) else { return }
         
         // Fetch Image
-        let session = URLSession(configuration: URLSessionConfiguration.default)
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = headers
+        let session = URLSession(configuration: configuration)
             var task: URLSessionTask?
             task = session.dataTask(with: URL, completionHandler: { [weak self] (data, response, error) in
                 guard let `self` = self else { return }

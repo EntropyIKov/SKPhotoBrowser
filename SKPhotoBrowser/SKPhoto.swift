@@ -123,11 +123,11 @@ extension SKPhoto {
         return SKPhoto(image: image)
     }
     
-    public static func photoWithImageURL(_ url: String) -> SKPhoto {
-        return SKPhoto(url: url)
+    public static func photoWithImageURL(_ url: String, headers: SKPhotoHeaders? = nil) -> SKPhoto {
+        return SKPhoto(url: url, headers: headers)
     }
     
-    public static func photoWithImageURL(_ url: String, holder: UIImage?) -> SKPhoto {
-        return SKPhoto(url: url, holder: holder)
+    public static func photoWithImageURL(_ url: String, headers: SKPhotoHeaders? = nil, holder: UIImage?) -> SKPhoto {
+        return SKPhoto(url: url, headers: headers, holder: holder)
     }
 }

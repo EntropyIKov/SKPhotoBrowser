@@ -9,9 +9,9 @@
 import UIKit
 
 @objc public protocol SKPhotoProtocol: NSObjectProtocol {
+    var index: Int { get set }
     var underlyingImage: UIImage! { get }
-    var caption: String! { get }
-    var index: Int { get set}
+    var caption: String? { get }
     var contentMode: UIViewContentMode { get set }
     func loadUnderlyingImageAndNotify()
     func checkCache()
@@ -21,14 +21,13 @@ public typealias SKPhotoHeaders = [String: String]
 
 // MARK: - SKPhoto
 open class SKPhoto: NSObject, SKPhotoProtocol {
-    
+    open var index: Int = 0
     open var underlyingImage: UIImage!
-    open var photoURL: String!
+    open var caption: String?
     open var headers: SKPhotoHeaders?
     open var contentMode: UIViewContentMode = .scaleAspectFill
     open var shouldCachePhotoURLImage: Bool = false
-    open var caption: String!
-    open var index: Int = 0
+    open var photoURL: String!
 
     override init() {
         super.init()
@@ -82,7 +81,6 @@ open class SKPhoto: NSObject, SKPhotoProtocol {
             var task: URLSessionTask?
             task = session.dataTask(with: URL, completionHandler: { [weak self] (data, response, error) in
                 guard let `self` = self else { return }
-                
                 defer { session.finishTasksAndInvalidate() }
 
                 guard error == nil else {

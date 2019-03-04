@@ -1,9 +1,63 @@
 # Change Log
 
+## 6.0.0
+
+### Big Changed
+- #330 Changes for swift 4.2, Xcode 10, and iOS 12 by jlcanale 
+
+#### Updated
+- #314 Add possibility to provide custom request parameters by Fiser33 
+- #315 Fix: Unable to set delete and close button images without setting size. by kiztonwose
+- #318 fix unreleased views in uiwindow for non-dismiss animation case by fans3210
+- #321 Set the backround view's background color from settings by pantelisss 
+- #331 Add ability to lower caption and give caption a background gradient by corban123
+- #334 Prevent app crashed on zooming when xScale or yScale is NaN, Inf by GE-N
+- #335 use the size of the window instead of UIScreen to support SplitScreen by PatrickDotStar
+
+## 5.1.0
+
+#### Updated
+- #311 Delete and Close Button Overlapping bug by rajendersha
+
+## 5.0.9
+
+#### Updated
+- #304 CaptionViewForPhotoAtIndex is not work 
+- #305 Padding properties for close and delete button. 
+- Bug  At iphoneX, close / delete / pagination can be tapped correctly.
+
+## 5.0.8
+
+#### Updated
+- #224 override popupShare not working
+- #248 always ignore image cache, asked by FicowShen
+- #304 CaptionViewForPhotoAtIndex is not work 
+- #301 SKPhotoBrowserOptions.displayDeleteButton not working
+- #302 Add method to remove all images for SKCache by filograno
+
+## 5.0.7
+
+#### Updated
+- #301 SKPhotoBrowserOptions.displayCounterLabel is not working 
+- #297 I want to hide SKPagingScrollView's horizontal indicator by mothule
+
+## 5.0.6
+
+#### Updated
+- #292 Fix crash when imageRatio isNan by arnaudWasappli 
+- #291 When disableVerticalSwipe is true the browser crashes on close by aliillyas 
+
+## 5.0.5
+
+#### Updated
+- #271 SmartInvert now works properly by timroesner 
+- #288 Add the long photo width match screen option by dirtmelon 
+- #289 Add SWIFT_VERSION to xcconfig by cheungpat
+
 ## 5.0.4
 
 #### Updated
-- #273 Fixed crash on resizableImageView force unwrapping.
+- #273 Fixed crash on resizableImageView force unwrapping by matuslittva 
 
 ## 5.0.3
 

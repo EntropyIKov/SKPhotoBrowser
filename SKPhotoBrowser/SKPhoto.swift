@@ -12,7 +12,7 @@ import UIKit
     var index: Int { get set }
     var underlyingImage: UIImage! { get }
     var caption: String? { get }
-    var contentMode: UIViewContentMode { get set }
+    var contentMode: UIView.ContentMode { get set }
     func loadUnderlyingImageAndNotify()
     func checkCache()
 }
@@ -25,7 +25,7 @@ open class SKPhoto: NSObject, SKPhotoProtocol {
     open var underlyingImage: UIImage!
     open var caption: String?
     open var headers: SKPhotoHeaders?
-    open var contentMode: UIViewContentMode = .scaleAspectFill
+    open var contentMode: UIView.ContentMode = .scaleAspectFill
     open var shouldCachePhotoURLImage: Bool = false
     open var photoURL: String!
 
@@ -75,9 +75,7 @@ open class SKPhoto: NSObject, SKPhotoProtocol {
         guard photoURL != nil, let URL = URL(string: photoURL) else { return }
         
         // Fetch Image
-        let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = headers
-        let session = URLSession(configuration: configuration)
+        let session = URLSession(configuration: SKPhotoBrowserOptions.sessionConfiguration)
             var task: URLSessionTask?
             task = session.dataTask(with: URL, completionHandler: { [weak self] (data, response, error) in
                 guard let `self` = self else { return }
